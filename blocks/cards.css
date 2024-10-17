@@ -50,3 +50,8 @@
   background-color: white !important;
   border: none;
 }
+
+.button__like:hover {
+  background-image: url("../images/likehover.png");
+  transition: background-color 0.5;
+}

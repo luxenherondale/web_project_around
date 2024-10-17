@@ -36,15 +36,27 @@
   max-width: 24px;
   width: 100%;
   height: 24px;
-  border: 1px;
+  border: none;
   margin-left: 10px;
   margin-right: 30px;
   padding-bottom: 35px;
 }
+
+.profile__edit-button:hover {
+  background-image: url("../images/Vectorhover.png");
+  border: none;
+}
+
 .profile__add-button {
   max-width: 150px;
   height: 50px;
   width: 100%;
   margin-left: 140px;
   border: none;
+  background-image: url(../images/AddButton.png);
+}
+
+.profile__add-button:hover {
+  background-image: url("../images/AddButtonhover.png");
+  transition: background-color 0.5;
 }

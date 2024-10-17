@@ -30,14 +30,15 @@
           alt="fotodeperfil"
         />
         <div class="profile__info">
-          <h1 class="profile__name">Jaques Cousteau</h1>
-          <p class="profile__description">Explorador</p>
+          <h1 class="profile__name" id="displayName">Jaques Cousteau</h1>
+          <p class="profile__description" id="displayJob">Explorador</p>
         </div>
-        <button class="profile__edit-button">
+        <button class="profile__edit-button" id="btn-abrir-popup">
           <img src="/images/Vector.png" alt="lapiz editor de nombre" />
         </button>
         <button class="profile__add-button">
-          <img src="/images/Add Button.png" alt="boton agregar contenido" />
+          <!-- <img src="/images/AddButton.png" alt="boton agregar contenido" />
+          -->
         </button>
       </section>
       <main>
@@ -120,6 +121,40 @@
       <footer class="footer">
         <p class="footer__copyright">© 2024 Around The U.S.</p>
       </footer>
+
+      <div class="overlay" id="overlay">
+        <div class="popup__container" id="popup-editprofile">
+          <form class="profile__form-edit form">
+            <img
+              src="./images/CloseIcon.png"
+              alt="cerrar pop up"
+              class="form__close-button"
+              id="btn-cerrar-popup"
+            />
+            <h3 class="profile__form-tittle">Editar perfil</h3>
+            <fieldset class="form__fieldset fieldset">
+              <label class="form__label" for="name"></label>
+              <input
+                class="form__input"
+                type="text"
+                id="name"
+                placeholder="Nombre"
+              />
+              <label class="form__label" for="job"></label>
+              <input
+                class="form__input"
+                type="text"
+                id="job"
+                placeholder="Acerca de mi"
+              />
+              <button class="form__button" type="submit" id="popup-button-save">
+                Guardar
+              </button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
     </div>
+    <script src="./script.js"></script>
   </body>
 </html>
