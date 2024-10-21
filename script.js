@@ -1,4 +1,4 @@
-var btnAbrirPopUp = document.getElementById("btn-abrir-popup"),
+const btnAbrirPopUp = document.getElementById("btn-abrir-popup"),
   overlay = document.getElementById("overlay"),
   popup = document.getElementById("popup-editprofile"),
   btnCerrarPopup = document.getElementById("btn-cerrar-popup");
@@ -23,12 +23,12 @@ function handleProfileFormSubmit(evt) {
   evt.preventDefault(); // Evita que el formulario se envíe de manera predeterminada
 
   // Busquemos los campos del formulario en el DOM
-  let nameInput = document.getElementById("name");
-  let jobInput = document.getElementById("job");
+  const nameInput = document.getElementById("name");
+  const jobInput = document.getElementById("job");
 
   // Obtén los valores de cada campo
-  let nameValue = nameInput.value;
-  let jobValue = jobInput.value;
+  const nameValue = nameInput.value;
+  const jobValue = jobInput.value;
 
   // Inserta nuevos valores en el HTML
   displayName.textContent = "" + nameValue;
