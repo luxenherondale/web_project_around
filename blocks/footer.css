@@ -10,3 +10,16 @@
   position: relative;
   left: 460px;
 }
+
+@media screen and (max-width: 768px) {
+  .footer__copyright {
+    position: relative;
+    left: 185px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .footer__copyright {
+    position: relative;
+    left: 5px;
+  }
+}

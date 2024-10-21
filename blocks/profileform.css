@@ -23,7 +23,6 @@
   align-items: center;
   width: 430px;
   height: 330px;
-
   margin: 45px auto 45px auto;
 }
 .profile__form-edit {
@@ -51,9 +50,11 @@
   position: absolute;
   left: 1150px;
   top: 260px;
+  background-image: url("../images/CloseIcon.png");
+  background-repeat: no-repeat;
 }
 .form__close-button:hover {
-  background-image: url(../images/CloseIconhover.png);
+  background-image: url("../images/CloseIconhover.png");
 }
 .profile__form-tittle {
   background-color: #ffffff;
@@ -75,7 +76,7 @@
   border: none;
 }
 
-.form__button {
+.buttonsave {
   background-color: #ffffff;
   color: #c4c4c4;
   width: 358px;
@@ -84,4 +85,68 @@
   margin-top: 20px;
   border-color: #c4c4c4;
   cursor: pointer;
+}
+.buttonsave:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+@media screen and (max-width: 1280px) {
+  .form__close-button {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 855px;
+    top: 230px;
+    background-image: url("../images/CloseIcon.png");
+    background-repeat: no-repeat;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .form__close-button {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 599px;
+    top: 200px;
+    background-image: url("../images/CloseIcon.png");
+    background-repeat: no-repeat;
+  }
+}
+@media screen and (max-width: 320px) {
+  .popup__container {
+    max-width: 282px;
+    height: 322px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 282px;
+
+    margin: 45px auto 45px auto;
+  }
+  .form__input {
+    background-color: #ffffff;
+    padding: 20px;
+    width: 238px;
+    height: 25px;
+  }
+  .form__label {
+    width: 198px;
+    height: 25px;
+  }
+  .form__button {
+    max-width: 238px;
+    height: 46px;
+  }
+  .form__close-button {
+    max-width: 26px;
+    height: 26px;
+    position: absolute;
+    left: 255px;
+    top: 190px;
+    background-image: url("../images/CloseIcon.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
 }

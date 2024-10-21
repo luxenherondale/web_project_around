@@ -14,6 +14,7 @@
   border-radius: 50%;
   width: 100%;
   margin-right: 32px;
+  background-size: contain;
 }
 
 .profile__info {
@@ -53,10 +54,58 @@
   width: 100%;
   margin-left: 140px;
   border: none;
-  background-image: url(../images/AddButton.png);
+  background-image: url("../images/AddButton.png");
 }
 
 .profile__add-button:hover {
   background-image: url("../images/AddButtonhover.png");
   transition: background-color 0.5;
+}
+
+@media screen and (max-width: 768px) {
+  .profile {
+    max-width: 680px;
+    height: 120px;
+  }
+  .profile__add-button {
+    margin-left: 0;
+  }
+  .profile__name {
+    font-size: 35px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .profile {
+    height: 286px;
+    display: flex;
+    flex-direction: column;
+    max-width: fit-content;
+  }
+  .profile__add-button {
+    width: 282px;
+    height: 50px;
+    background-repeat: no-repeat;
+    padding: 40px;
+    position: relative;
+    top: -60px;
+  }
+  .profile__name {
+    font-size: 22px;
+    position: relative;
+    top: -30px;
+  }
+  .profile__edit-button {
+    position: relative;
+    top: -100px;
+    right: -130px;
+  }
+  .profile__image {
+    margin: 0;
+  }
+  .profile__description {
+    margin: 0;
+    padding-left: 50px;
+    position: relative;
+    top: -40px;
+  }
 }

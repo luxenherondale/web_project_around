@@ -125,12 +125,8 @@
       <div class="overlay" id="overlay">
         <div class="popup__container" id="popup-editprofile">
           <form class="profile__form-edit form">
-            <img
-              src="./images/CloseIcon.png"
-              alt="cerrar pop up"
-              class="form__close-button"
-              id="btn-cerrar-popup"
-            />
+            <div class="form__close-button" id="btn-cerrar-popup"></div>
+
             <h3 class="profile__form-tittle">Editar perfil</h3>
             <fieldset class="form__fieldset fieldset">
               <label class="form__label" for="name"></label>
@@ -147,7 +143,7 @@
                 id="job"
                 placeholder="Acerca de mi"
               />
-              <button class="form__button" type="submit" id="popup-button-save">
+              <button class="buttonsave" type="submit" id="buttonsave">
                 Guardar
               </button>
             </fieldset>

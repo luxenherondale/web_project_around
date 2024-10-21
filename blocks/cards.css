@@ -55,3 +55,16 @@
   background-image: url("../images/likehover.png");
   transition: background-color 0.5;
 }
+
+@media screen and (max-width: 768px) {
+  .card__conteiner {
+    grid-template-columns: 1fr 1fr;
+    max-width: fit-content;
+  }
+}
+@media screen and (max-width: 320px) {
+  .card__conteiner {
+    grid-template-columns: 1fr;
+    max-width: fit-content;
+  }
+}

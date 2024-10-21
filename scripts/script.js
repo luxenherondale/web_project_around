@@ -45,9 +45,7 @@ function handleProfileFormSubmit(evt) {
 // Conecta el manipulador al formulario
 formElement.addEventListener("submit", handleProfileFormSubmit);
 
-// Cerrar el pop-up cuando se haga clic en el botón
-document
-  .getElementById("popup-button-save")
-  .addEventListener("click", function () {
-    overlayElement.classList.add("hidden");
-  });
+// Cerrar el pop-up al guardar (botón "Guardar")
+buttonsave.addEventListener("click", function (event) {
+  overlayElement.classList.remove("active"); // Cerrar el pop-up
+});
