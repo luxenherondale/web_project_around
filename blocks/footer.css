@@ -23,3 +23,9 @@
     left: 5px;
   }
 }
+@media screen and (max-width: 520px) {
+  .footer__copyright {
+    position: relative;
+    left: 5px;
+  }
+}
