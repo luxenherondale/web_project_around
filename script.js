@@ -49,3 +49,60 @@ formElement.addEventListener("submit", handleProfileFormSubmit);
 buttonsave.addEventListener("click", function (event) {
   overlayElement.classList.remove("active"); // Cerrar el pop-up
 });
+
+// seccion tarjetas iniciales
+
+// Selección de elementos del DOM
+const btnAbrirPopUpCard = document.getElementById("add-button-card");
+const addcardPopup = document.getElementById("addcard");
+const btnCerrarPopupCard = document.getElementById("btn-cerrar-popup-card");
+const formAddCard = document.getElementById("popup-addcard");
+const cardsContainer = document.querySelector(".card__conteiner");
+
+// Abrir popup de agregar tarjeta
+btnAbrirPopUpCard.addEventListener("click", () => {
+  addcardPopup.classList.add("active");
+});
+
+// Cerrar popup de agregar tarjeta
+btnCerrarPopupCard.addEventListener("click", () => {
+  addcardPopup.classList.remove("active");
+});
+
+// Manejo del formulario para agregar nueva tarjeta
+formAddCard.addEventListener("submit", (event) => {
+  event.preventDefault(); // Evita el envío por defecto
+
+  // Obtener valores de los campos
+  const titleInput = document.getElementById("title");
+  const urlInput = document.getElementById("url");
+  const titleValue = titleInput.value.trim();
+  const urlValue = urlInput.value.trim();
+
+  // Validar los valores
+  if (!titleValue || !urlValue) {
+    alert("Por favor, completa ambos campos.");
+    return;
+  }
+
+  // Crear un nuevo elemento de tarjeta
+  const newCard = document.createElement("div");
+  newCard.classList.add("card__content");
+  newCard.innerHTML = `
+    <img src="${urlValue}" alt="${titleValue}" class="card__image" />
+    <div class="card_info">
+      <h2 class="card__text">${titleValue}</h2>
+      <button class="button__like"></button>
+    </div>
+  `;
+
+  // Agregar la nueva tarjeta al contenedor
+  cardsContainer.appendChild(newCard);
+
+  // Limpiar campos del formulario
+  titleInput.value = "";
+  urlInput.value = "";
+
+  // Cerrar el popup
+  addcardPopup.classList.remove("active");
+});

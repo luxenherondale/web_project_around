@@ -36,7 +36,7 @@
         <button class="profile__edit-button" id="btn-abrir-popup">
           <img src="/images/Vector.png" alt="lapiz editor de nombre" />
         </button>
-        <button class="profile__add-button">
+        <button class="profile__add-button" id="add-button-card">
           <!-- <img src="/images/AddButton.png" alt="boton agregar contenido" />
           -->
         </button>
@@ -151,6 +151,35 @@
         </div>
       </div>
     </div>
+    <div class="addcard" id="addcard">
+      <div class="popup_card" id="popup-addcard">
+        <form class="card__form-add form">
+          <div class="form__close-button-card" id="btn-cerrar-popup-card"></div>
+
+          <h3 class="card__form-tittle">Nuevo lugar</h3>
+          <fieldset class="form__fieldset fieldset">
+            <label class="form__label" for="title"></label>
+            <input
+              class="form__input"
+              type="text"
+              id="title"
+              placeholder="Titulo"
+            />
+            <label class="form__label" for="url"></label>
+            <input
+              class="form__input"
+              type="text"
+              id="url"
+              placeholder="Enlace a la imagen"
+            />
+            <button class="buttonsave" type="submit" id="buttonsave">
+              Guardar
+            </button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+
     <script src="./script.js"></script>
   </body>
 </html>
