@@ -53,8 +53,24 @@
   border: none;
 }
 
-.button__like:hover {
+.button__like_active {
   background-image: url("../images/likehover.png");
+  transition: background-color 0.5;
+}
+
+.button__delete {
+  position: relative;
+  top: -280px;
+  max-width: 18px;
+  height: 19px;
+  width: 100%;
+  background-image: url("../images/Trash.png");
+  background-color: transparent;
+  border: none;
+}
+
+.button__delete-icon {
+  background-image: url("../images/Trashhover.png");
   transition: background-color 0.5;
 }
 

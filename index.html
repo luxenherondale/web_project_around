@@ -44,77 +44,16 @@
       <main>
         <section class="card">
           <div class="card__conteiner">
-            <div class="card__content">
-              <img
-                src="/images/card1.png"
-                alt="un rio con arboles"
-                class="card__image"
-              />
-              <div class="card_info">
-                <h2 class="card__text">Valle de Yosemite</h2>
-                <button class="button__like"></button>
+            <template id="card-template">
+              <div class="card__content">
+                <img src="" alt="" class="card__image" />
+                <div class="card_info">
+                  <h2 class="card__text"></h2>
+                  <button class="button__like"></button>
+                  <button class="button__delete"></button>
+                </div>
               </div>
-            </div>
-
-            <div class="card__content">
-              <img
-                src="/images/card2.png"
-                alt="lago con monte"
-                class="card__image"
-              />
-              <div class="card_info">
-                <h2 class="card__text">Lago Louise</h2>
-                <button class="button__like"></button>
-              </div>
-            </div>
-
-            <div class="card__content">
-              <img
-                src="/images/card3.png"
-                alt="montañas con atardecer"
-                class="card__image"
-              />
-              <div class="card_info">
-                <h2 class="card__text">Montañas pelonas</h2>
-                <button class="button__like"></button>
-              </div>
-            </div>
-
-            <div class="card__content">
-              <img
-                src="/images/card4.png"
-                alt="montañas con cielo nocturno"
-                class="card__image"
-              />
-              <div class="card_info">
-                <h2 class="card__text">Latemar</h2>
-                <button class="button__like"></button>
-              </div>
-            </div>
-
-            <div class="card__content">
-              <img
-                src="/images/card5.png"
-                alt="lago y montañas"
-                class="card__image"
-              />
-              <div class="card_info">
-                <h2 class="card__text">Vanois National...</h2>
-                <button class="button__like"></button>
-              </div>
-            </div>
-
-            <div class="card__content">
-              <img
-                src="/images/card6.png"
-                alt="barco en un lago"
-                class="card__image"
-              />
-              <div class="card_info">
-                <h2 class="card__text">Lago di Braies</h2>
-                <button class="button__like"></button>
-              </div>
-            </div>
+            </template>
           </div>
         </section>
       </main>
@@ -172,12 +111,18 @@
               id="url"
               placeholder="Enlace a la imagen"
             />
-            <button class="buttonsave" type="submit" id="buttonsave">
+            <button class="buttonsave" type="submit" id="cardbuttonsave">
               Guardar
             </button>
           </fieldset>
         </form>
       </div>
+    </div>
+
+    <div class="popup__conteiner-image" id="image-popup">
+      <button class="image__close" id="close-image-popup">✕</button>
+      <img src="" alt="" class="popup__image" />
+      <p class="popup__caption"></p>
     </div>
 
     <script src="./script.js"></script>

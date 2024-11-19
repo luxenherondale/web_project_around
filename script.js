@@ -45,21 +45,28 @@ function handleProfileFormSubmit(evt) {
 // Conecta el manipulador al formulario
 formElement.addEventListener("submit", handleProfileFormSubmit);
 
+console.log(buttonsave);
 // Cerrar el pop-up al guardar (botón "Guardar")
 buttonsave.addEventListener("click", function (event) {
   overlayElement.classList.remove("active"); // Cerrar el pop-up
 });
 
-// seccion tarjetas iniciales
-
+// Tarjetas
 // Selección de elementos del DOM
 const btnAbrirPopUpCard = document.getElementById("add-button-card");
 const addcardPopup = document.getElementById("addcard");
 const btnCerrarPopupCard = document.getElementById("btn-cerrar-popup-card");
-const formAddCard = document.getElementById("popup-addcard");
+const formAddCard = document.querySelector(".card__form-add"); // Asegúrate de que esta clase esté en el formulario
 const cardsContainer = document.querySelector(".card__conteiner");
+const cardTemplate = document.querySelector("#card-template").content; // Template para las tarjetas
 
-// Abrir popup de agregar tarjeta
+//  pop up imagen en grande
+const imagePopup = document.getElementById("image-popup");
+const popupImage = imagePopup.querySelector(".popup__image");
+const popupCaption = imagePopup.querySelector(".popup__caption");
+const closeImagePopup = document.getElementById("close-image-popup");
+
+// Abrir popup formulario de agregar tarjeta
 btnAbrirPopUpCard.addEventListener("click", () => {
   addcardPopup.classList.add("active");
 });
@@ -68,6 +75,54 @@ btnAbrirPopUpCard.addEventListener("click", () => {
 btnCerrarPopupCard.addEventListener("click", () => {
   addcardPopup.classList.remove("active");
 });
+
+// Función para abrir el popup con imagen y título
+function openImagePopup(src, title) {
+  popupImage.src = src;
+  popupImage.alt = title;
+  popupCaption.textContent = title; // Asignar el título al caption
+  imagePopup.classList.add("popup_opened");
+}
+// Cerrar popup de imagen
+closeImagePopup.addEventListener("click", () => {
+  imagePopup.classList.remove("popup_opened");
+});
+
+// Función para crear una nueva tarjeta
+function createCard(titleValue, urlValue) {
+  // Clonar el contenido del template
+  const cardElement = cardTemplate.cloneNode(true);
+
+  // Personalizar la tarjeta
+  const cardImage = cardElement.querySelector(".card__image");
+  cardImage.src = urlValue; // Establecer la URL de la imagen
+  cardImage.alt = titleValue; // Establecer el texto alternativo
+
+  const cardText = cardElement.querySelector(".card__text");
+  cardText.textContent = titleValue; // Establecer el título
+
+  const likeButton = cardElement.querySelector(".button__like");
+  likeButton.addEventListener("click", function (evt) {
+    evt.target.classList.toggle("button__like_active"); // Agrega o quita la clase activa
+  });
+
+  // Botón de eliminar
+  const deleteButton = cardElement.querySelector(".button__delete");
+  deleteButton.addEventListener("click", function () {
+    const parentCard = deleteButton.closest(".card__content"); // Encuentra el contenedor más cercano
+    if (parentCard) {
+      parentCard.remove(); // Elimina la tarjeta del DOM
+    }
+  });
+
+  // Evento para abrir el popup al hacer clic en la imagen
+  cardImage.addEventListener("click", () => {
+    openImagePopup(cardImage.src, cardText.textContent);
+  });
+
+  // Agregar la tarjeta al contenedor
+  cardsContainer.appendChild(cardElement);
+}
 
 // Manejo del formulario para agregar nueva tarjeta
 formAddCard.addEventListener("submit", (event) => {
@@ -85,24 +140,46 @@ formAddCard.addEventListener("submit", (event) => {
     return;
   }
 
-  // Crear un nuevo elemento de tarjeta
-  const newCard = document.createElement("div");
-  newCard.classList.add("card__content");
-  newCard.innerHTML = `
-    <img src="${urlValue}" alt="${titleValue}" class="card__image" />
-    <div class="card_info">
-      <h2 class="card__text">${titleValue}</h2>
-      <button class="button__like"></button>
-    </div>
-  `;
-
-  // Agregar la nueva tarjeta al contenedor
-  cardsContainer.appendChild(newCard);
+  // Crear y agregar la tarjeta
+  createCard(titleValue, urlValue);
 
   // Limpiar campos del formulario
   titleInput.value = "";
   urlInput.value = "";
 
-  // Cerrar el popup
+  // Cerrar el popup formulario
   addcardPopup.classList.remove("active");
+});
+
+// Cards iniciales
+const initialCards = [
+  {
+    name: "Valle de Yosemite",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg",
+  },
+  {
+    name: "Lago Louise",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg",
+  },
+  {
+    name: "Montañas Calvas",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg",
+  },
+  {
+    name: "Latemar",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg",
+  },
+  {
+    name: "Parque Nacional de la Vanoise",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/vanoise.jpg",
+  },
+  {
+    name: "Lago di Braies",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg",
+  },
+];
+
+// Crear las tarjetas iniciales al cargar la página
+initialCards.forEach((card) => {
+  createCard(card.name, card.link);
 });
