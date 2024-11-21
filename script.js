@@ -39,13 +39,12 @@ function handleProfileFormSubmit(evt) {
   jobInput.value = "";
 
   // Cierra el pop-up
-  overlayElement.classList.add("hidden"); // Asegúrate de tener una clase .hidden para ocultar el overlay
+  overlayElement.classList.add("hidden");
 }
 
 // Conecta el manipulador al formulario
 formElement.addEventListener("submit", handleProfileFormSubmit);
 
-console.log(buttonsave);
 // Cerrar el pop-up al guardar (botón "Guardar")
 buttonsave.addEventListener("click", function (event) {
   overlayElement.classList.remove("active"); // Cerrar el pop-up
@@ -56,7 +55,7 @@ buttonsave.addEventListener("click", function (event) {
 const btnAbrirPopUpCard = document.getElementById("add-button-card");
 const addcardPopup = document.getElementById("addcard");
 const btnCerrarPopupCard = document.getElementById("btn-cerrar-popup-card");
-const formAddCard = document.querySelector(".card__form-add"); // Asegúrate de que esta clase esté en el formulario
+const formAddCard = document.querySelector(".card__form-add");
 const cardsContainer = document.querySelector(".card__conteiner");
 const cardTemplate = document.querySelector("#card-template").content; // Template para las tarjetas
 
@@ -103,7 +102,7 @@ function createCard(titleValue, urlValue) {
 
   const likeButton = cardElement.querySelector(".button__like");
   likeButton.addEventListener("click", function (evt) {
-    evt.target.classList.toggle("button__like_active"); // Agrega o quita la clase activa
+    evt.target.classList.toggle("button__like_active"); // Esto agrega o quita la clase activa
   });
 
   // Botón de eliminar

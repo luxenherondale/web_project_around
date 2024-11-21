@@ -13,7 +13,7 @@
 }
 .addcard.active {
   visibility: visible;
-  display: block;
+  display: flex;
 }
 
 .popup_card {
@@ -40,18 +40,12 @@
   border-radius: 10px;
 }
 
-.form__fieldset {
-  flex-direction: column;
-  justify-items: center;
-  background-color: #ffffff;
-  border: none;
-}
 .form__close-button-card {
   width: 40px;
   height: 40px;
   position: absolute;
-  left: 1180px;
-  top: 30px;
+  left: 1150px;
+  top: 260px;
   background-image: url("../images/CloseIcon.png");
   background-repeat: no-repeat;
 }
@@ -64,18 +58,6 @@
   font-size: 24px;
   padding-left: 30px;
   margin-bottom: 20px;
-}
-.form__label {
-  background-color: #ffffff;
-  color: #c4c4c4;
-}
-.form__input {
-  background-color: #ffffff;
-  padding: 20px;
-  width: 358px;
-  height: 27.26px;
-  border-bottom-color: #000000;
-  border: none;
 }
 
 .buttonsave {
@@ -99,7 +81,7 @@
     height: 40px;
     position: absolute;
     left: 855px;
-    top: 30px;
+    top: 190px;
     background-image: url("../images/CloseIcon.png");
     background-repeat: no-repeat;
   }
@@ -111,7 +93,7 @@
     height: 40px;
     position: absolute;
     left: 599px;
-    top: 30px;
+    top: 200px;
     background-image: url("../images/CloseIcon.png");
     background-repeat: no-repeat;
   }
@@ -124,19 +106,14 @@
     justify-content: center;
     align-items: center;
     width: 282px;
-
     margin: 45px auto 45px auto;
-  }
-  .form__fieldset {
-    max-width: 282px;
-    height: 322px;
   }
   .form__close-button-card {
     max-width: 26px;
     height: 26px;
     position: absolute;
     left: 255px;
-    top: 50px;
+    top: 180px;
     background-image: url("../images/CloseIcon.png");
     background-repeat: no-repeat;
     background-size: contain;
