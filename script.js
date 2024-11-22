@@ -1,12 +1,12 @@
-const btnAbrirPopUp = document.getElementById("btn-abrir-popup"),
+const btnOpenPopUp = document.getElementById("btn-open-popup"),
   overlay = document.getElementById("overlay"),
   popup = document.getElementById("popup-editprofile"),
-  btnCerrarPopup = document.getElementById("btn-cerrar-popup");
+  btnClosePopup = document.getElementById("btn-close-popup");
 
-btnAbrirPopUp.addEventListener("click", function () {
+btnOpenPopUp.addEventListener("click", function () {
   overlay.classList.add("active");
 });
-btnCerrarPopup.addEventListener("click", function () {
+btnClosePopup.addEventListener("click", function () {
   overlay.classList.remove("active");
 });
 
@@ -54,7 +54,7 @@ buttonsave.addEventListener("click", function (event) {
 // Selección de elementos del DOM
 const btnAbrirPopUpCard = document.getElementById("add-button-card");
 const addcardPopup = document.getElementById("addcard");
-const btnCerrarPopupCard = document.getElementById("btn-cerrar-popup-card");
+const btnClosePopupCard = document.getElementById("btn-close-popup-card");
 const formAddCard = document.querySelector(".card__form-add");
 const cardsContainer = document.querySelector(".card__conteiner");
 const cardTemplate = document.querySelector("#card-template").content; // Template para las tarjetas
@@ -71,7 +71,7 @@ btnAbrirPopUpCard.addEventListener("click", () => {
 });
 
 // Cerrar popup de agregar tarjeta
-btnCerrarPopupCard.addEventListener("click", () => {
+btnClosePopupCard.addEventListener("click", () => {
   addcardPopup.classList.remove("active");
 });
 

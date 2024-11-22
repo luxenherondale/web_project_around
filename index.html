@@ -33,7 +33,7 @@
           <h1 class="profile__name" id="displayName">Jaques Cousteau</h1>
           <p class="profile__description" id="displayJob">Explorador</p>
         </div>
-        <button class="profile__edit-button" id="btn-abrir-popup">
+        <button class="profile__edit-button" id="btn-open-popup">
           <img src="/images/Vector.png" alt="lapiz editor de nombre" />
         </button>
         <button class="profile__add-button" id="add-button-card">
@@ -64,7 +64,7 @@
       <div class="overlay" id="overlay">
         <div class="popup__container" id="popup-editprofile">
           <form class="profile__form-edit form">
-            <div class="form__close-button" id="btn-cerrar-popup"></div>
+            <div class="form__close-button" id="btn-close-popup"></div>
 
             <h3 class="profile__form-tittle">Editar perfil</h3>
             <fieldset class="form__fieldset fieldset">
@@ -93,7 +93,7 @@
     <div class="addcard" id="addcard">
       <div class="popup_card" id="popup-addcard">
         <form class="card__form-add form">
-          <div class="form__close-button-card" id="btn-cerrar-popup-card"></div>
+          <div class="form__close-button-card" id="btn-close-popup-card"></div>
 
           <h3 class="card__form-tittle">Nuevo lugar</h3>
           <fieldset class="form__fieldset fieldset">
@@ -118,11 +118,12 @@
         </form>
       </div>
     </div>
-
-    <div class="popup__conteiner-image" id="image-popup">
-      <button class="image__close" id="close-image-popup">✕</button>
-      <img src="" alt="" class="popup__image" />
-      <p class="popup__caption"></p>
+    <div class="popup__space-image">
+      <div class="popup__conteiner-image" id="image-popup">
+        <button class="image__close" id="close-image-popup">✕</button>
+        <img src="" alt="" class="popup__image" />
+        <p class="popup__caption"></p>
+      </div>
     </div>
 
     <script src="./script.js"></script>
