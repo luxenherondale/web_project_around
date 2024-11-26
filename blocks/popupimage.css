@@ -54,8 +54,8 @@
   background-image: url(../images/CloseIcon.png);
   background-size: contain;
   background-repeat: no-repeat;
-  position: fixed;
-  left: 1400px;
+  position: absolute;
+  right: 15%;
   top: 60px;
   width: 25px;
   height: 25px;
@@ -63,25 +63,4 @@
 
 .image__close:hover {
   background-image: url(../images/CloseIconhover.png);
-}
-
-@media screen and (max-width: 1280px) {
-  .image__close {
-    position: absolute;
-    left: 1015px;
-  }
-}
-@media screen and (max-width: 765px) {
-  .image__close {
-    position: absolute;
-    left: 660px;
-    top: 100px;
-  }
-}
-@media screen and (max-width: 320px) {
-  .image__close {
-    position: absolute;
-    left: 260px;
-    top: 150px;
-  }
 }
