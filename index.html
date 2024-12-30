@@ -74,14 +74,22 @@
                 type="text"
                 id="name"
                 placeholder="Nombre"
+                minlength="2"
+                maxlength="40"
+                required
               />
+              <span id="name-error" class="forminput-error"></span>
               <label class="form__label" for="job"></label>
               <input
                 class="form__input"
                 type="text"
                 id="job"
                 placeholder="Acerca de mi"
+                minlength="2"
+                maxlength="200"
+                required
               />
+              <span id="job-error" class="forminput-error"></span>
               <button class="buttonsave" type="submit" id="buttonsave">
                 Guardar
               </button>
@@ -103,14 +111,20 @@
               type="text"
               id="title"
               placeholder="Titulo"
+              minlength="2"
+              maxlength="30"
+              required
             />
+            <span id="title-error" class="forminput-error"></span>
             <label class="form__label" for="url"></label>
             <input
               class="form__input"
-              type="text"
+              type="url"
               id="url"
               placeholder="Enlace a la imagen"
+              required
             />
+            <span id="url-error" class="forminput-error"></span>
             <button class="buttonsave" type="submit" id="cardbuttonsave">
               Crear
             </button>
@@ -126,6 +140,7 @@
       </div>
     </div>
 
-    <script src="./script.js"></script>
+    <script src="./index.js"></script>
+    <script src="./validate.js"></script>
   </body>
 </html>

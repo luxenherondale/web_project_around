@@ -74,6 +74,27 @@
   color: #ffffff;
 }
 
+.forminput-error {
+  color: red;
+  background-color: #ffffff;
+  font-size: 0.8em;
+  margin-top: 5px;
+  display: none; /* Ocultar mensajes por defecto */
+}
+
+.forminput-error_active {
+  display: block; /* Mostrar mensajes de error cuando estén activos */
+}
+
+.forminput_type_error {
+  border-color: red; /* Resaltar campos inválidos */
+}
+
+.button_inactive {
+  background-color: #d3d3d3;
+  cursor: not-allowed;
+}
+
 @media screen and (max-width: 320px) {
   .popup__container {
     max-width: 282px;
