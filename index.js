@@ -1,154 +1,37 @@
-const btnOpenPopUp = document.getElementById("btn-open-popup"),
-  overlay = document.getElementById("overlay"),
-  popup = document.getElementById("popup-editprofile"),
-  btnClosePopup = document.getElementById("btn-close-popup");
+// index.js
 
-btnOpenPopUp.addEventListener("click", function () {
-  overlay.classList.add("active");
-});
-btnClosePopup.addEventListener("click", function () {
-  overlay.classList.remove("active");
-});
+// Importación de clases y funciones
+import Card from "./card.js";
+import FormValidator from "./FormValidator.js";
+import { openPopup, closePopup, closeImagePopup } from "./utils.js";
 
-// Busquemos el formulario en el DOM
-const overlayElement = document.getElementById("overlay");
-const formElement = document.querySelector(".profile__form-edit");
-
-// Selecciona los elementos donde se introducirán los valores de los campos
-const displayName = document.getElementById("displayName");
-const displayJob = document.getElementById("displayJob");
-
-// El manipulador de entrega de formularios
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault(); // Evita que el formulario se envíe de manera predeterminada
-
-  // Busquemos los campos del formulario en el DOM
-  const nameInput = document.getElementById("name");
-  const jobInput = document.getElementById("job");
-
-  // Obtén los valores de cada campo
-  const nameValue = nameInput.value;
-  const jobValue = jobInput.value;
-
-  // Inserta nuevos valores en el HTML
-  displayName.textContent = "" + nameValue;
-  displayJob.textContent = "" + jobValue;
-
-  // Limpia los campos del formulario
-  nameInput.value = "";
-  jobInput.value = "";
-
-  // Cierra el pop-up
-  overlayElement.classList.add("hidden");
-}
-
-// Conecta el manipulador al formulario
-formElement.addEventListener("submit", handleProfileFormSubmit);
-
-// Cerrar el pop-up al guardar (botón "Guardar")
-buttonsave.addEventListener("click", function (event) {
-  overlayElement.classList.remove("active"); // Cerrar el pop-up
-});
-
-// Tarjetas
-// Selección de elementos del DOM
-const btnAbrirPopUpCard = document.getElementById("add-button-card");
-const addcardPopup = document.getElementById("addcard");
-const btnClosePopupCard = document.getElementById("btn-close-popup-card");
-const formAddCard = document.querySelector(".card__form-add");
-const cardsContainer = document.querySelector(".card__conteiner");
-const cardTemplate = document.querySelector("#card-template").content; // Template para las tarjetas
-
-//  pop up imagen en grande
-const imagePopup = document.getElementById("image-popup");
-const popupImage = imagePopup.querySelector(".popup__image");
-const popupCaption = imagePopup.querySelector(".popup__caption");
-const closeImagePopup = document.getElementById("close-image-popup");
-
-// Abrir popup formulario de agregar tarjeta
-btnAbrirPopUpCard.addEventListener("click", () => {
-  addcardPopup.classList.add("active");
-});
-
-// Cerrar popup de agregar tarjeta
-btnClosePopupCard.addEventListener("click", () => {
-  addcardPopup.classList.remove("active");
-});
-
-// Función para abrir el popup con imagen y título
-function openImagePopup(src, title) {
-  popupImage.src = src;
-  popupImage.alt = title;
-  popupCaption.textContent = title; // Asignar el título al caption
-  imagePopup.classList.add("popup_opened");
-}
-// Cerrar popup de imagen
-closeImagePopup.addEventListener("click", () => {
-  imagePopup.classList.remove("popup_opened");
-});
-
-// Función para crear una nueva tarjeta
-function createCard(titleValue, urlValue) {
-  // Clonar el contenido del template
-  const cardElement = cardTemplate.cloneNode(true);
-
-  // Personalizar la tarjeta
-  const cardImage = cardElement.querySelector(".card__image");
-  cardImage.src = urlValue; // Establecer la URL de la imagen
-  cardImage.alt = titleValue; // Establecer el texto alternativo
-
-  const cardText = cardElement.querySelector(".card__text");
-  cardText.textContent = titleValue; // Establecer el título
-
-  const likeButton = cardElement.querySelector(".button__like");
-  likeButton.addEventListener("click", function (evt) {
-    evt.target.classList.toggle("button__like_active"); // Esto agrega o quita la clase activa
-  });
-
-  // Botón de eliminar
-  const deleteButton = cardElement.querySelector(".button__delete");
-  deleteButton.addEventListener("click", function () {
-    const parentCard = deleteButton.closest(".card__content"); // Encuentra el contenedor más cercano
-    if (parentCard) {
-      parentCard.remove(); // Elimina la tarjeta del DOM
-    }
-  });
-
-  // Evento para abrir el popup al hacer clic en la imagen
-  cardImage.addEventListener("click", () => {
-    openImagePopup(cardImage.src, cardText.textContent);
-  });
-
-  // Agregar la tarjeta al contenedor
-  cardsContainer.appendChild(cardElement);
-}
-
-// Manejo del formulario para agregar nueva tarjeta
-formAddCard.addEventListener("submit", (event) => {
-  event.preventDefault(); // Evita el envío por defecto
-
-  // Obtener valores de los campos
-  const titleInput = document.getElementById("title");
-  const urlInput = document.getElementById("url");
-  const titleValue = titleInput.value.trim();
-  const urlValue = urlInput.value.trim();
-
-  // Validar los valores
-  if (!titleValue || !urlValue) {
-    alert("Por favor, completa ambos campos.");
-    return;
-  }
-
-  // Crear y agregar la tarjeta
-  createCard(titleValue, urlValue);
-
-  // Limpiar campos del formulario
-  titleInput.value = "";
-  urlInput.value = "";
-
-  // Cerrar el popup formulario
-  addcardPopup.classList.remove("active");
-});
+// Configuración específica para cada formulario
+const validationConfigs = {
+  profileForm: {
+    formSelector: ".profile__form-edit",
+    inputSelector: ".form__input",
+    submitButtonSelector: ".buttonsave",
+    inactiveButtonClass: "button_inactive",
+    inputErrorClass: "forminput_type_error",
+    errorClass: "forminput-error_active",
+    inputs: [
+      { id: "name", minLength: 2, maxLength: 40 },
+      { id: "job", minLength: 2, maxLength: 200 },
+    ],
+  },
+  cardForm: {
+    formSelector: ".card__form-add",
+    inputSelector: ".form__input",
+    submitButtonSelector: ".buttonsave",
+    inactiveButtonClass: "button_inactive",
+    inputErrorClass: "forminput_type_error",
+    errorClass: "forminput-error_active",
+    inputs: [
+      { id: "title", minLength: 2, maxLength: 30 },
+      { id: "url", isUrl: true },
+    ],
+  },
+};
 
 // Cards iniciales
 const initialCards = [
@@ -178,7 +61,83 @@ const initialCards = [
   },
 ];
 
-// Crear las tarjetas iniciales al cargar la página
-initialCards.forEach((card) => {
-  createCard(card.name, card.link);
+// Selección de elementos del DOM
+const btnOpenPopUp = document.getElementById("btn-open-popup");
+const btnClosePopup = document.getElementById("btn-close-popup");
+const btnAbrirPopUpCard = document.getElementById("add-button-card");
+const btnClosePopupCard = document.getElementById("btn-close-popup-card");
+const overlay = document.getElementById("overlay");
+const addcardPopup = document.getElementById("addcard");
+const formAddCard = document.querySelector(".card__form-add");
+const cardsContainer = document.querySelector(".card__conteiner");
+const profileForm = document.querySelector(".profile__form-edit");
+const nameInput = document.getElementById("name");
+const jobInput = document.getElementById("job");
+const displayName = document.getElementById("displayName");
+const displayJob = document.getElementById("displayJob");
+const closeImageButton = document.getElementById("close-image-popup");
+const imagePopup = document.getElementById("image-popup");
+
+// Función para crear una nueva tarjeta
+function createCard(data) {
+  const card = new Card(data, "#card-template");
+  return card.generateCard();
+}
+
+// Manejador del formulario de perfil
+function handleProfileFormSubmit(evt) {
+  evt.preventDefault();
+  displayName.textContent = nameInput.value;
+  displayJob.textContent = jobInput.value;
+  closePopup(overlay);
+}
+
+// Manejador del formulario de nueva tarjeta
+function handleCardFormSubmit(evt) {
+  evt.preventDefault();
+  const titleInput = document.getElementById("title");
+  const urlInput = document.getElementById("url");
+
+  const newCard = createCard({
+    name: titleInput.value,
+    link: urlInput.value,
+  });
+
+  cardsContainer.prepend(newCard);
+  formAddCard.reset();
+  closePopup(addcardPopup);
+}
+
+// Event Listeners
+
+// Popup de perfil
+btnOpenPopUp.addEventListener("click", () => openPopup(overlay));
+btnClosePopup.addEventListener("click", () => closePopup(overlay));
+profileForm.addEventListener("submit", handleProfileFormSubmit);
+
+// Popup de nueva tarjeta
+btnAbrirPopUpCard.addEventListener("click", () => openPopup(addcardPopup));
+btnClosePopupCard.addEventListener("click", () => closePopup(addcardPopup));
+formAddCard.addEventListener("submit", handleCardFormSubmit);
+
+// Popup de imagen
+closeImageButton.addEventListener("click", () => closeImagePopup(imagePopup));
+
+// Inicialización de la validación de formularios
+const editFormValidator = new FormValidator(
+  validationConfigs.profileForm,
+  profileForm
+);
+const addCardFormValidator = new FormValidator(
+  validationConfigs.cardForm,
+  formAddCard
+);
+
+editFormValidator.enableValidation();
+addCardFormValidator.enableValidation();
+
+// Creación de cards iniciales
+initialCards.forEach((item) => {
+  const cardElement = createCard(item);
+  cardsContainer.append(cardElement);
 });
