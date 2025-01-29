@@ -1,39 +1,42 @@
 // index.js
 
 // Importación de clases y funciones
-import Card from "./card.js";
-import FormValidator from "./FormValidator.js";
-import { openPopup, closePopup, closeImagePopup } from "./utils.js";
+import Card from "./components/card.js";
+import FormValidator from "./components/FormValidator.js";
+import Section from "./components/Section.js";
+import PopupWithImage from "./components/PopupWithImage.js";
+import PopupWithForm from "./components/PopupWithForm.js";
+import UserInfo from "./components/UserInfo.js";
 
 // Configuración específica para cada formulario
 const validationConfigs = {
   profileForm: {
-    formSelector: ".profile__form-edit",
-    inputSelector: ".form__input",
-    submitButtonSelector: ".buttonsave",
-    inactiveButtonClass: "button_inactive",
-    inputErrorClass: "forminput_type_error",
-    errorClass: "forminput-error_active",
+    formSelector: ".profile__form-edit", // Selector del formulario de edición de perfil
+    inputSelector: ".form__input", // Selector de los inputs del formulario
+    submitButtonSelector: ".buttonsave", // Selector del botón de guardar
+    inactiveButtonClass: "button_inactive", // Clase para el botón inactivo
+    inputErrorClass: "forminput_type_error", // Clase para el input con error
+    errorClass: "forminput-error_active", // Clase para el mensaje de error
     inputs: [
-      { id: "name", minLength: 2, maxLength: 40 },
-      { id: "job", minLength: 2, maxLength: 200 },
+      { id: "name", minLength: 2, maxLength: 40 }, // Reglas para el input de nombre
+      { id: "job", minLength: 2, maxLength: 200 }, // Reglas para el input de trabajo
     ],
   },
   cardForm: {
-    formSelector: ".card__form-add",
-    inputSelector: ".form__input",
-    submitButtonSelector: ".buttonsave",
-    inactiveButtonClass: "button_inactive",
-    inputErrorClass: "forminput_type_error",
-    errorClass: "forminput-error_active",
+    formSelector: ".card__form-add", // Selector del formulario de añadir tarjeta
+    inputSelector: ".form__input", // Selector de los inputs del formulario
+    submitButtonSelector: ".buttonsave", // Selector del botón de guardar
+    inactiveButtonClass: "button_inactive", // Clase para el botón inactivo
+    inputErrorClass: "forminput_type_error", // Clase para el input con error
+    errorClass: "forminput-error_active", // Clase para el mensaje de error
     inputs: [
-      { id: "title", minLength: 2, maxLength: 30 },
-      { id: "url", isUrl: true },
+      { id: "title", minLength: 2, maxLength: 30 }, // Reglas para el input de título
+      { id: "url", isUrl: true }, // Reglas para el input de URL
     ],
   },
 };
 
-// Cards iniciales
+// Cards iniciales - Galería predeterminada
 const initialCards = [
   {
     name: "Valle de Yosemite",
@@ -62,68 +65,106 @@ const initialCards = [
 ];
 
 // Selección de elementos del DOM
-const btnOpenPopUp = document.getElementById("btn-open-popup");
-const btnClosePopup = document.getElementById("btn-close-popup");
-const btnAbrirPopUpCard = document.getElementById("add-button-card");
-const btnClosePopupCard = document.getElementById("btn-close-popup-card");
-const overlay = document.getElementById("overlay");
-const addcardPopup = document.getElementById("addcard");
-const formAddCard = document.querySelector(".card__form-add");
-const cardsContainer = document.querySelector(".card__conteiner");
-const profileForm = document.querySelector(".profile__form-edit");
-const nameInput = document.getElementById("name");
-const jobInput = document.getElementById("job");
-const displayName = document.getElementById("displayName");
-const displayJob = document.getElementById("displayJob");
-const closeImageButton = document.getElementById("close-image-popup");
-const imagePopup = document.getElementById("image-popup");
+const btnOpenPopUp = document.getElementById("btn-open-popup"); // Botón para abrir el popup de perfil
+const btnClosePopup = document.getElementById("btn-close-popup"); // Botón para cerrar el popup de perfil
+const btnAbrirPopUpCard = document.getElementById("add-button-card"); // Botón para abrir el popup de nueva tarjeta
+const btnClosePopupCard = document.getElementById("btn-close-popup-card"); // Botón para cerrar el popup de nueva tarjeta
+const overlay = document.getElementById("overlay"); // Fondo oscuro del popup de perfil
+const addcardPopup = document.getElementById("addcard"); // Contenedor del popup de nueva tarjeta
+const formAddCard = document.querySelector(".card__form-add"); // Formulario para añadir tarjeta
+const cardsContainer = document.querySelector(".card__conteiner"); // Contenedor de todas las tarjetas
+const profileForm = document.querySelector(".profile__form-edit"); // Formulario de edición de perfil
+const nameInput = document.getElementById("name"); // Campo de entrada para el nombre
+const jobInput = document.getElementById("job"); // Campo de entrada para el trabajo
+const displayName = document.getElementById("displayName"); // Elemento que muestra el nombre actual
+const displayJob = document.getElementById("displayJob"); // Elemento que muestra el trabajo actual
+const closeImageButton = document.getElementById("close-image-popup"); // Botón para cerrar el popup de imagen
+const imagePopup = document.getElementById("image-popup"); // Contenedor del popup de imagen
+
+// Inicialización del manejo de información de usuario
+const userInfo = new UserInfo({
+  nameSelector: "#displayName",
+  jobSelector: "#displayJob",
+});
+
+// Inicialización del popup de imagen
+const popupWithImage = new PopupWithImage(".popup__space-image");
+popupWithImage.setEventListeners();
 
 // Función para crear una nueva tarjeta
-function createCard(data) {
-  const card = new Card(data, "#card-template");
+const createCard = (data) => {
+  const card = new Card(data, "#card-template", (imageData) =>
+    popupWithImage.open(imageData)
+  );
   return card.generateCard();
-}
+};
 
-// Manejador del formulario de perfil
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-  displayName.textContent = nameInput.value;
-  displayJob.textContent = jobInput.value;
-  closePopup(overlay);
-}
+// Configuración de la sección de tarjetas y su renderizado inicial
+const cardSection = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      const cardElement = createCard(item);
+      cardSection.addItem(cardElement);
+    },
+  },
+  ".card__conteiner"
+);
 
-// Manejador del formulario de nueva tarjeta
-function handleCardFormSubmit(evt) {
-  evt.preventDefault();
-  const titleInput = document.getElementById("title");
-  const urlInput = document.getElementById("url");
+// Renderiza las tarjetas iniciales
+cardSection.renderItems();
 
-  const newCard = createCard({
-    name: titleInput.value,
-    link: urlInput.value,
-  });
+// Función para manejar el envío del formulario de perfil
+const handleProfileFormSubmit = (formData) => {
+  userInfo.setUserInfo(formData);
+  profilePopup.close();
+};
 
-  cardsContainer.prepend(newCard);
-  formAddCard.reset();
-  closePopup(addcardPopup);
-}
+// Función para manejar el envío del formulario de nueva tarjeta
+const handleCardFormSubmit = (formData) => {
+  const cardData = {
+    name: formData.title,
+    link: formData.url,
+  };
+  const cardElement = createCard(cardData);
+  cardSection.addItem(cardElement);
+  addCardPopup.close();
+};
+
+// Inicialización de los popups de formulario
+const profilePopup = new PopupWithForm(
+  "#popup-editprofile",
+  handleProfileFormSubmit
+);
+const addCardPopup = new PopupWithForm("#popup-addcard", handleCardFormSubmit);
+
+// Configuración de los event listeners de los popups
+profilePopup.setEventListeners();
+addCardPopup.setEventListeners();
 
 // Event Listeners
 
 // Popup de perfil
-btnOpenPopUp.addEventListener("click", () => openPopup(overlay));
-btnClosePopup.addEventListener("click", () => closePopup(overlay));
-profileForm.addEventListener("submit", handleProfileFormSubmit);
+btnOpenPopUp.addEventListener("click", () => {
+  const userData = userInfo.getUserInfo();
+  nameInput.value = userData.name;
+  jobInput.value = userData.job;
+  editFormValidator.resetValidation();
+  profilePopup.open();
+});
 
 // Popup de nueva tarjeta
-btnAbrirPopUpCard.addEventListener("click", () => openPopup(addcardPopup));
-btnClosePopupCard.addEventListener("click", () => closePopup(addcardPopup));
-formAddCard.addEventListener("submit", handleCardFormSubmit);
+btnAbrirPopUpCard.addEventListener("click", () => {
+  addCardFormValidator.resetValidation();
+  addCardPopup.open();
+});
 
 // Popup de imagen
-closeImageButton.addEventListener("click", () => closeImagePopup(imagePopup));
+closeImageButton.addEventListener("click", () => {
+  popupWithImage.close();
+});
 
-// Inicialización de la validación de formularios
+// Inicialización de los validadores de formulario
 const editFormValidator = new FormValidator(
   validationConfigs.profileForm,
   profileForm
@@ -133,11 +174,6 @@ const addCardFormValidator = new FormValidator(
   formAddCard
 );
 
+// Activación de la validación de formularios
 editFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
-
-// Creación de cards iniciales
-initialCards.forEach((item) => {
-  const cardElement = createCard(item);
-  cardsContainer.append(cardElement);
-});

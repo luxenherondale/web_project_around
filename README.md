@@ -7,3 +7,6 @@ SEGUNDA PARTE PARA EL SPRINT 8, implementando mas funcionalidades JAVASCRIPT, PA
 ACTUALIZACIÓN PROYECTO 10.
 
 SE procedió a la organización del código, por lo que se agregaron archivos modales como card.js, utils.js y fueron exportados y refactorizados con constructores, para un código más limpio y ordenado.
+
+ACTUALIZACION PROYECTO 10
+Organización de scripts en carpeta components
