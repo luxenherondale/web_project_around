@@ -24,11 +24,13 @@
         />
       </header>
       <section class="profile">
-        <img
-          src="/images/fotoperfil.png"
-          class="profile__image"
-          alt="fotodeperfil"
-        />
+        <div class="profile__image-container">
+          <img
+            src="/images/fotoperfil.png"
+            class="profile__image"
+            alt="fotodeperfil"
+          />
+        </div>
         <div class="profile__info">
           <h1 class="profile__name" id="displayName">Jaques Cousteau</h1>
           <p class="profile__description" id="displayJob">Explorador</p>
@@ -137,6 +139,55 @@
         <button class="image__close" id="close-image-popup">✕</button>
         <img src="" alt="" class="popup__image" />
         <p class="popup__caption"></p>
+      </div>
+    </div>
+
+    <!-- //Boton confirmacion eliminacion card. -->
+
+    <div class="delete-confirmation" id="delete-confirmation">
+      <div class="popup_card" id="popup-deletecard">
+        <form class="card__form-delete form">
+          <div
+            class="form__close-button-card"
+            id="btn-close-popup-deletecard"
+          ></div>
+          <h3 class="card__form-tittle">¿Estás seguro/a?</h3>
+          <fieldset class="form__fieldset fieldset">
+            <button
+              class="buttonsave popup__confirm-button"
+              type="submit"
+              id="confirm-delete"
+            >
+              Sí
+            </button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    <!--Pop up para editar foto de perfil  -->
+    <div class="avatar-edit" id="avatar-edit">
+      <div class="popup_card form__fieldset card__form-add" id="popup-avatar">
+        <form class="avatar__form-edit form">
+          <div
+            class="form__close-button-card"
+            id="btn-close-popup-avatar"
+          ></div>
+          <h3 class="avatar__form-tittle">Cambiar foto de perfil</h3>
+          <fieldset class="form__fieldset fieldset">
+            <label class="form__label" for="avatar-url"></label>
+            <input
+              class="form__input"
+              type="url"
+              id="avatar-url"
+              placeholder="Enlace a la nueva foto de perfil"
+              required
+            />
+            <span id="avatar-url-error" class="forminput-error"></span>
+            <button class="buttonsave" type="submit" id="avatarbuttonsave">
+              Guardar
+            </button>
+          </fieldset>
+        </form>
       </div>
     </div>
 

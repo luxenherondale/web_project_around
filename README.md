@@ -10,3 +10,6 @@ SE procedió a la organización del código, por lo que se agregaron archivos mo
 
 ACTUALIZACION PROYECTO 10
 Organización de scripts en carpeta components
+
+ACTUALIZACIÓN PROYECTO 12.
+Uso de Javascript asíncronico y trabajar con APIs, se aplicó la conexión al servidor dado por los parametros del proyecto, además de la modificación para que las cards, likes y eliminados y ediciones se suban al servidor, se agregó la funcionalidad de editar la foto de perfil, y se mejoró la experiencia del usuario que todos los formularios pop up, dicen "Guardando" mientras carga el servidor.
