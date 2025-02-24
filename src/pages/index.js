@@ -1,14 +1,14 @@
 // Archivo principal que inicializa la aplicación
 
-import Card from "./components/card.js";
-import FormValidator from "./components/FormValidator.js";
-import Section from "./components/Section.js";
-import PopupWithImage from "./components/PopupWithImage.js";
-import PopupWithForm from "./components/PopupWithForm.js";
-import PopupWithConfirmation from "./components/PopupWithConfirmation.js";
-import PopupWithAvatar from "./components/PopupWithAvatar.js"; // Nueva importación
-import UserInfo from "./components/UserInfo.js";
-import api from "./components/api.js";
+import Card from "../components/card.js";
+import FormValidator from "../components/FormValidator.js";
+import Section from "../components/Section.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
+import PopupWithAvatar from "../components/PopupWithAvatar.js";
+import UserInfo from "../components/UserInfo.js";
+import api from "../components/api.js";
 
 // Configuración de validación
 const validationConfigs = {

@@ -13,3 +13,6 @@ Organización de scripts en carpeta components
 
 ACTUALIZACIÓN PROYECTO 12.
 Uso de Javascript asíncronico y trabajar con APIs, se aplicó la conexión al servidor dado por los parametros del proyecto, además de la modificación para que las cards, likes y eliminados y ediciones se suban al servidor, se agregó la funcionalidad de editar la foto de perfil, y se mejoró la experiencia del usuario que todos los formularios pop up, dicen "Guardando" mientras carga el servidor.
+NOTA IMPORTANTE: SE APLICÓ ESTRUCTURA DE ARCHIVOS SEGÚN EL DEMO DADO POR EL INSTRUCTOR, Ya que de otra forma no carga, POR LO QUE PARA VERLO EN github pages se debe agregar el SRC.
+
+https://luxenherondale.github.io/web_project_around/src
