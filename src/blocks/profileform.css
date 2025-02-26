@@ -35,6 +35,7 @@
   top: -45px;
   background-image: url("../images/CloseIcon.png");
   background-repeat: no-repeat;
+  background-color: transparent;
 }
 .form__close-button:hover {
   background-image: url("../images/CloseIconhover.png");

@@ -33,7 +33,7 @@
   padding: 10px;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 .card__text {
   font-family: Inter;
@@ -43,6 +43,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  flex-grow: 1;
 }
 .button__like {
   max-width: 21px;
@@ -51,6 +52,7 @@
   background-image: url("../images/like.png");
   background-color: white !important;
   border: none;
+  margin-left: auto;
 }
 
 .button__like_active {

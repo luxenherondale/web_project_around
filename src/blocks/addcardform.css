@@ -26,6 +26,7 @@
   height: 330px;
   margin: 45px auto 45px auto;
   font-family: "Inter";
+  background-color: transparent;
 }
 .card__form-add {
   max-width: 430px;
@@ -49,6 +50,7 @@
   top: -45px;
   background-image: url("../images/CloseIcon.png");
   background-repeat: no-repeat;
+  background-color: transparent;
 }
 .form__close-button-card:hover {
   background-image: url("../images/CloseIconhover.png");
@@ -70,7 +72,6 @@
   margin-top: 20px;
   border-color: #c4c4c4;
   cursor: pointer;
-  width: 100%;
 }
 .buttonsave:hover {
   background-color: #000000;
